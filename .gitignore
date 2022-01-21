@@ -3,6 +3,17 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Models
+01_ViolaJones/
+02_SSDResNet/
+04_MMOD/
+06_RFCN_resnet101/
+07_FasterRCNN_inception_resnet_v2/
+08_ssd_mobilenet_v1/
+09_TinyYolo/
+10_YOLOv2/
+11_YOLOv3/
+
 # C extensions
 *.so
 
