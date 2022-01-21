@@ -3,7 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Models
+# Models and Results
+TimingResults/
+*.pickle
+andy/
+unknown/
+__models/
 01_ViolaJones/
 02_SSDResNet/
 04_MMOD/
