@@ -1,5 +1,6 @@
 from FaceRecognition import FaceRecognition
 from WebcamVideoStream import WebcamVideoStream
+from SaveTimings import SaveTimings
 import time
 import cv2 as cv
 import numpy as np
@@ -74,6 +75,9 @@ def main() -> None:
     # Video Capture
     video_capture = WebcamVideoStream(0).start()
 
+    # Saving Times
+    timer = SaveTimings("01_ViolaJones")
+
     # Count Frames Per Second
     starting_time = time.time()
     fps_counter = 0
@@ -100,8 +104,13 @@ def main() -> None:
 
         if (time.time() - starting_time) > 1.0:
 
-            print(
-                f"FPS: {fps_counter / (time.time() - starting_time):.4f}")
+            fps = fps_counter / (time.time() - starting_time)
+
+            if timer.new_value(fps) > 200:
+                timer.save_results()
+                break
+
+            print(f"FPS: {fps:.4f}")
 
             fps_counter = 0
             starting_time = time.time()

@@ -4,6 +4,7 @@ import numpy as np
 import dlib
 from WebcamVideoStream import WebcamVideoStream
 from FaceRecognition import FaceRecognition
+from SaveTimings import SaveTimings
 
 # Constants
 PATH_MODEL = "./__models/04_MMOD/mmod_human_face_detector.dat"
@@ -87,6 +88,9 @@ def main() -> None:
     # Video Capture
     video_capture = WebcamVideoStream(0).start()
 
+    # Saving Times
+    timer = SaveTimings("04_DLib_MMOD")
+
     # Count Frames Per Second
     starting_time = time.time()
     fps_counter = 0
@@ -113,8 +117,13 @@ def main() -> None:
 
         if (time.time() - starting_time) > 1.0:
 
-            print(
-                f"FPS: {fps_counter / (time.time() - starting_time):.4f}")
+            fps = fps_counter / (time.time() - starting_time)
+
+            if timer.new_value(fps) > 200:
+                timer.save_results()
+                break
+
+            print(f"FPS: {fps:.4f}")
 
             fps_counter = 0
             starting_time = time.time()
