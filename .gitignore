@@ -4,12 +4,6 @@ __pycache__/
 *$py.class
 
 # Models and Results
-yolov5/
-dataset_augmented/
-dataset_unedited/
-processed_images/
-mAP/
-test_results/
 TimingResults/
 *.pickle
 andy/
