@@ -1,10 +1,11 @@
 import psutil
-import time
 import os
 import pandas as pd
 import platform
 
 NUM = "01"
+RESULTS_PATH = "./TimingResults/01_ViolaJones.xlsx"
+
 
 def get_raspberry_cpu_temp() -> float:
     result = 0.0
@@ -27,29 +28,39 @@ def get_stats() -> list:
     return cpu, mem, cpu_temp
 
 
-if __name__ == "__main__":
-
+def save_results(cpu, mem, temp) -> None:
     is_windows = platform.machine() == "AMD64"
 
+    zipped = zip(cpu, mem) if is_windows else zip(cpu, mem, temp)
+    columns = ["CPU%", "MEM%"] if is_windows else ["CPU%", "MEM%", "CPU_TEMP"]
+
+    df = pd.DataFrame(list(zipped), columns=columns)
+
+    df.to_excel(f"./TimingResults/{NUM}_measurements.xlsx", index=False)
+
+
+if __name__ == "__main__":
     cpu = []
     mem = []
-    temperature = []
+    temp = []
 
     try:
         while True:
+
             v_cpu, v_memory, v_temperature = get_stats()
+
             cpu.append(v_cpu)
             mem.append(v_memory)
-            temperature.append(v_temperature)
+            temp.append(v_temperature)
 
             print(v_cpu, v_memory, v_temperature)
 
+            # Stop measurements when face detection results are saved
+            if os.path.exists(RESULTS_PATH):
+                save_results()
+                break
+
+    # Stop measurements when interrupting script
     except KeyboardInterrupt:
 
-        zipped = zip(cpu, mem) if is_windows else zip(cpu, mem, temperature)
-        columns = ["CPU%", "MEM%"] if is_windows else [
-            "CPU%", "MEM%", "CPU_TEMP"]
-
-        df = pd.DataFrame(list(zipped), columns=columns)
-
-        df.to_excel(f"./TimingResults/{NUM}_measurements.xlsx", index=False)
+        save_results()
