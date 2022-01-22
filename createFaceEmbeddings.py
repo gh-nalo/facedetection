@@ -1,8 +1,6 @@
 from sklearn.svm import SVC
 from sklearn.preprocessing import LabelEncoder
-from imutils import paths
 import numpy as np
-import imutils
 import pickle
 import cv2 as cv
 import os
@@ -22,6 +20,23 @@ PATH_EMBEDDER = "./faceRecognition/openface.nn4.small2.v1.t7"
 MIN_CONFIDENCE = 0.5
 
 
+def get_image_paths():
+    items = os.listdir(PATH_DATASET)
+
+    image_paths = []
+
+    for item in items:
+        current_item = os.path.join(PATH_DATASET, item)
+
+        if os.path.isdir(current_item):
+            files = os.listdir(current_item)
+
+            image_paths.extend([os.path.join(current_item, file)
+                               for file in files])
+
+    return image_paths
+
+
 def main():
     # Face Detector
     print("...Loading Face Detector")
@@ -32,7 +47,7 @@ def main():
     embedder = cv.dnn.readNetFromTorch(PATH_EMBEDDER)  # Source :: OpenFace
 
     # Images
-    image_paths = list(paths.list_images(PATH_DATASET))
+    image_paths = get_image_paths()
 
     known_embeddings = []
     known_names = []
@@ -47,7 +62,7 @@ def main():
 
         # Resize Image
         image = cv.imread(image_path)
-        image = imutils.resize(image, width=600)
+        image = cv.resize(image, (640, 640))
         (h, w) = image.shape[:2]
 
         # Create Input
