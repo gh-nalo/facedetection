@@ -3,6 +3,8 @@ import os
 
 BASE_PATH = "./TimingResults/"
 
+SAVE_RESULTS = True
+
 
 class SaveTimings:
 
@@ -19,6 +21,9 @@ class SaveTimings:
         return len(self.times)
 
     def save_results(self) -> None:
+
+        if not SAVE_RESULTS:
+            return
 
         df = pd.DataFrame(self.times)
         df.to_excel(self.path, index=False)
