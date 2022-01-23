@@ -1,5 +1,6 @@
 from threading import Thread
 import cv2 as cv
+import platform
 
 
 class WebcamVideoStream:
@@ -10,7 +11,11 @@ class WebcamVideoStream:
     def __init__(self, src=0):
 
         # TODO :: Remove CAP_DSHOW on Raspberry Pi
-        self.video_capture = cv.VideoCapture(src, cv.CAP_DSHOW)
+        is_windows = platform.machine() == "AMD64"
+        if is_windows:
+            self.video_capture = cv.VideoCapture(src, cv.CAP_DSHOW)
+        else:
+            self.video_capture = cv.VideoCapture(src)
 
         (self.frame_captured, self.frame) = self.video_capture.read()
         self.stopped = False
