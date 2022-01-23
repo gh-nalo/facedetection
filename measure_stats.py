@@ -57,10 +57,10 @@ if __name__ == "__main__":
 
             # Stop measurements when face detection results are saved
             if os.path.exists(RESULTS_PATH):
-                save_results()
+                save_results(cpu, mem, temp)
                 break
 
     # Stop measurements when interrupting script
     except KeyboardInterrupt:
 
-        save_results()
+        save_results(cpu, mem, temp)
