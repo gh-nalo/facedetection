@@ -1,11 +1,11 @@
 **Usage Bash:**
 
-*python run.py --a ScriptName [--s 640] [--f 10] & python ./util/measure_stats.py --a ScriptName*
+*python run.py --a ScriptName [--s 640] [--f 10] & python ./util/measure_stats.py --a ScriptName*  
 **Example**: *python run.py --a ViolaJones --s 640 --f 10 & python ./measure_stats.py --a ViolaJones*
 
 **Usage PowerShell (PowerShell 6.0+):**
 
-*python run.py --a ScriptName [--s 640] [--f 10] &; python ./util/measure_stats.py --a ScriptName*
+*python run.py --a ScriptName [--s 640] [--f 10] &; python ./util/measure_stats.py --a ScriptName*  
 **Example**: *python run.py --a ViolaJones --s 640 --f 10 &; python ./measure_stats.py --a ViolaJones*
 
 
