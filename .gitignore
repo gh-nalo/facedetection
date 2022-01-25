@@ -3,13 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Models and Results
-TimingResults/
-*.pickle
-andy/
-unknown/
-__models/
-
 # C extensions
 *.so
 
@@ -134,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom
+models/*
+TimingResults/*

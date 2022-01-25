@@ -2,9 +2,8 @@ import psutil
 import os
 import pandas as pd
 import platform
-
-NUM = "01"
-RESULTS_PATH = "./TimingResults/01_ViolaJones.xlsx"
+from FilePaths import Base
+import argparse
 
 
 def get_raspberry_cpu_temp() -> float:
@@ -28,7 +27,7 @@ def get_stats() -> list:
     return cpu, mem, cpu_temp
 
 
-def save_results(cpu, mem, temp) -> None:
+def save_results(cpu, mem, temp, name) -> None:
     is_windows = platform.machine() == "AMD64"
 
     zipped = zip(cpu, mem) if is_windows else zip(cpu, mem, temp)
@@ -36,13 +35,26 @@ def save_results(cpu, mem, temp) -> None:
 
     df = pd.DataFrame(list(zipped), columns=columns)
 
-    df.to_excel(f"./TimingResults/{NUM}_measurements.xlsx", index=False)
+    df.to_excel(os.path.join(Base.RESULTS, name) + "_measurements.xlsx", index=False)
 
 
 if __name__ == "__main__":
     cpu = []
     mem = []
     temp = []
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-a",
+        "--algorithm",
+        type=str,
+        required=True,
+        help="Algorithm To Run Inference On"
+    )
+
+    args = vars(parser.parse_args())
+    name = args["algorithm"]
 
     try:
         while True:
@@ -56,11 +68,11 @@ if __name__ == "__main__":
             print(v_cpu, v_memory, v_temperature)
 
             # Stop measurements when face detection results are saved
-            if os.path.exists(RESULTS_PATH):
-                save_results(cpu, mem, temp)
+            if os.path.exists(os.path.join(Base.RESULTS, name) + ".xlsx"):
+                save_results(cpu, mem, temp, name)
                 break
 
     # Stop measurements when interrupting script
     except KeyboardInterrupt:
 
-        save_results(cpu, mem, temp)
+        save_results(cpu, mem, temp, name)
