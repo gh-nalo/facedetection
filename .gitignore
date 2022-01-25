@@ -130,4 +130,6 @@ dmypy.json
 
 # Custom
 models/*
+!models/README.md
 TimingResults/*
+!TimingResults/README.md
