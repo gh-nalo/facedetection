@@ -5,8 +5,8 @@ import pickle
 import cv2 as cv
 import os
 
-PATH_MODELS = "../__models"
-PATH_RECOGNITION = os.path.join(PATH_MODELS, "face_Recognition")
+PATH_MODELS = "../models"
+PATH_RECOGNITION = os.path.join(PATH_MODELS, "face_recognition")
 
 # Filepaths
 PATH_DATASET = os.path.join(PATH_RECOGNITION, "dataset")
@@ -22,7 +22,6 @@ PATH_PROTOTXT = os.path.join(
 PATH_MODEL = os.path.join(
     PATH_MODELS, "02_SSDResNet/res10_300x300_ssd_iter_140000.caffemodel"
 )
-
 
 # Minimum Confidence For Face Detection In Dataset
 MIN_CONFIDENCE = 0.5
