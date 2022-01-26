@@ -1,4 +1,8 @@
-import pickle
+import platform
+if platform.machine() == "AMD64":
+    import pickle
+else:
+    import pickle5 as pickle
 import cv2 as cv
 import numpy as np
 from FilePaths import Recognition
