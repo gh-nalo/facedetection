@@ -1,15 +1,28 @@
-**Usage Bash:**
+**Usage run.py**: run.py [-h] -a ALGORITHM [-s SIZE] [-f FRAMES] [-sv SAVE]
 
-*python run.py --a ScriptName [--s ImageSize] [--f nFrames] [--sv True|False] & python ./util/measure_stats.py --a ScriptName*  
+optional arguments:  
+  -h, --help            show this help message and exit  
+  -a ALGORITHM, --algorithm ALGORITHM  
+                        Algorithm To Run Inference On  
+  -s SIZE, --size SIZE  Image Size To Run On  
+  -f FRAMES, --frames FRAMES  
+                        N_Frames To Run For  
+  -sv SAVE, --save SAVE  
+                        Save Timing Results  
+
+**Collect Throughput and system data - Bash:**
+
+*python run.py --a Algorithm [--s ImageSize] [--f nFrames] [--sv True|False] & python ./util/measure_stats.py --a Algorithm*  
+
 **Example**: *python run.py --a ViolaJones --s 640 --f 10 --sv False & python ./measure_stats.py --a ViolaJones*
 
-**Usage PowerShell (PowerShell 6.0+):**
+**Collect Throughput and system data - PowerShell (PowerShell 6.0+):**
 
-*python run.py --a ScriptName [--s ImageSize] [--f nFrames] [--sv True|False] &; python ./util/measure_stats.py --a ScriptName*  
+*python run.py --a Algorithm [--s ImageSize] [--f nFrames] [--sv True|False] &; python ./util measure_stats.py --a Algorithm*  
+
 **Example**: *python run.py --a ViolaJones --s 640 --f 10 --sv False &; python ./measure_stats.py --a ViolaJones*
 
-
-ScriptName Options:
+Algorithm Options:
 * ViolaJones
 * SSDResNet
 * DLibHogSVM
@@ -24,9 +37,3 @@ ScriptName Options:
 * TinyYolo
 * YoloV2
 * YoloV3
-
---s: Resolution To Run At
-
---f: Frames To Process Before Saving Results
-
---sv: Should save framerates after n_frames
