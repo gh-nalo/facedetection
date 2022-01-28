@@ -1,12 +1,12 @@
 **Usage Bash:**
 
-*python run.py --a ScriptName [--s 640] [--f 10] & python ./util/measure_stats.py --a ScriptName*  
-**Example**: *python run.py --a ViolaJones --s 640 --f 10 & python ./measure_stats.py --a ViolaJones*
+*python run.py --a ScriptName [--s ImageSize] [--f nFrames] [--sv True|False] & python ./util/measure_stats.py --a ScriptName*  
+**Example**: *python run.py --a ViolaJones --s 640 --f 10 --sv False & python ./measure_stats.py --a ViolaJones*
 
 **Usage PowerShell (PowerShell 6.0+):**
 
-*python run.py --a ScriptName [--s 640] [--f 10] &; python ./util/measure_stats.py --a ScriptName*  
-**Example**: *python run.py --a ViolaJones --s 640 --f 10 &; python ./measure_stats.py --a ViolaJones*
+*python run.py --a ScriptName [--s ImageSize] [--f nFrames] [--sv True|False] &; python ./util/measure_stats.py --a ScriptName*  
+**Example**: *python run.py --a ViolaJones --s 640 --f 10 --sv False &; python ./measure_stats.py --a ViolaJones*
 
 
 ScriptName Options:
@@ -28,3 +28,5 @@ ScriptName Options:
 --s: Resolution To Run At
 
 --f: Frames To Process Before Saving Results
+
+--sv: Should save framerates after n_frames

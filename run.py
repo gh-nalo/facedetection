@@ -6,18 +6,17 @@ import cv2 as cv
 import argparse
 
 
-def main(detector, name, n_frames=None, image_size=None) -> None:
+def main(detector, name, n_frames=200, image_size=None, save_results=True) -> None:
 
     # Video Capture
     video_capture = WebcamVideoStream(0).start()
 
     # Saving Times
-    timer = SaveTimings(name, save_results=True)
+    timer = SaveTimings(name, save_results=save_results)
 
     # Count Frames Per Second
     starting_time = time.time()
     fps_counter = 0
-    n_frames = n_frames if n_frames else 200
 
     # Detection Loop
     while True:
@@ -94,9 +93,19 @@ if __name__ == "__main__":
         help="N_Frames To Run For"
     )
 
+    parser.add_argument(
+        "-sv",
+        "--save",
+        type=bool,
+        required=False,
+        help="Save Timing Results"
+    )
+
     args = vars(parser.parse_args())
+
     name = args["algorithm"]
     size = args["size"]
+    save_results = args["save"]
     n_frames = args["frames"]
 
     recognition = FaceRecognition()
@@ -162,4 +171,4 @@ if __name__ == "__main__":
         print("Error: Mismatch on Algorithm")
         exit()
 
-    main(detector, name, n_frames, args["size"])
+    main(detector, name, n_frames, args["size"], save_results)
