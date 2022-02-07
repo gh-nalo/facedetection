@@ -1,11 +1,7 @@
 import cv2 as cv
 import numpy as np
 import dlib
-
-BOX_COLOR = (0, 255, 0)
-BOX_WIDTH = 2
-TEXT_COLOR = (0, 0, 255)
-TEXT_WIDTH = 2
+from BoxDef import BoxDef
 
 
 class DLibHogSVM:
@@ -38,16 +34,16 @@ class DLibHogSVM:
                     (x1, y1 - 10),
                     cv.FONT_HERSHEY_SIMPLEX,
                     1.0,
-                    TEXT_COLOR,
-                    TEXT_WIDTH
+                    BoxDef.TEXT_COLOR,
+                    BoxDef.TEXT_WIDTH
                 )
 
             cv.rectangle(
                 frame,
                 (x1, y1),
                 (x2, y2),
-                BOX_COLOR,
-                BOX_WIDTH,
+                BoxDef.BOX_COLOR,
+                BoxDef.BOX_WIDTH,
             )
 
     def perform_detection(self, frame: np.ndarray, image_size: int = 600) -> np.ndarray:
