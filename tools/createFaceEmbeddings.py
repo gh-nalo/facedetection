@@ -5,7 +5,7 @@ import pickle
 import cv2 as cv
 import os
 
-PATH_MODELS = "../models"
+PATH_MODELS = "models"
 PATH_RECOGNITION = os.path.join(PATH_MODELS, "face_recognition")
 
 # Filepaths
@@ -17,10 +17,10 @@ PATH_EMBEDDER = os.path.join(PATH_RECOGNITION, "openface.nn4.small2.v1.t7")
 
 # Model paths
 PATH_PROTOTXT = os.path.join(
-    PATH_MODELS, "02_SSDResNet/deploy.prototxt.txt"
+    PATH_MODELS, "SSDResNet/deploy.prototxt.txt"
 )
 PATH_MODEL = os.path.join(
-    PATH_MODELS, "02_SSDResNet/res10_300x300_ssd_iter_140000.caffemodel"
+    PATH_MODELS, "SSDResNet/res10_300x300_ssd_iter_140000.caffemodel"
 )
 
 # Minimum Confidence For Face Detection In Dataset
