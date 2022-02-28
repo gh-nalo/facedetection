@@ -13,6 +13,9 @@ optional arguments:
   -sv SAVE, --save SAVE  
                         Save Timing Results  
 
+First, Face Recognizer has to be trained on own dataset.
+Available models can be downloaded at: https://1drv.ms/u/s!As67d16HqKiDgchIi9OEKPYEJTvG0Q?e=g13QuC
+
 **Collect Throughput and system data - Bash:**
 
 *python run.py --a Algorithm [--s ImageSize] [--f nFrames] [--sv True|False] & python ./util/measure_stats.py --a Algorithm*  
