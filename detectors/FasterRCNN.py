@@ -36,7 +36,7 @@ class FasterRCNN:
                     (x1, y1 - 10),
                     cv.FONT_HERSHEY_SIMPLEX,
                     1.0,
-                    BoxDef.BoxDef.TEXT_COLOR,
+                    BoxDef.TEXT_COLOR,
                     BoxDef.TEXT_WIDTH
                 )
 
